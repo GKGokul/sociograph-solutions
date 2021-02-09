@@ -3,14 +3,30 @@ import React, { useState } from "react";
 import Navbar from "./components/Navbar";
 import IdSelector from "./components/IdSelector";
 import ReviewContainer from "./components/ReviewContainer";
+import Pagination from "./components/Pagination";
 
 import "./styles/App.scss";
 
 function App() {
-	const [productId, setproductId] = useState("1");
-	const [viewerId, setviewerId] = useState("1");
+	const [loading, setloading] = useState(false);
+	const [productId, setproductId] = useState(1);
+	const [viewerId, setviewerId] = useState(0);
+	const [allReviewData, setallReviewData] = useState([]);
 
-	const [allReviewData, setallReviewData] = useState({ data: "" });
+	// Pagination states
+	const [currentPage, setcurrentPage] = useState(1);
+	const [reviewsPerPage] = useState(2);
+
+	const indexOfLastReview = currentPage * reviewsPerPage;
+	const indexOfFirstReview = indexOfLastReview - reviewsPerPage;
+	const currentReviews = allReviewData.slice(
+		indexOfFirstReview,
+		indexOfLastReview
+	);
+
+	const paginate = (pageNumber) => {
+		setcurrentPage(pageNumber);
+	};
 
 	return (
 		<div className="App">
@@ -22,8 +38,19 @@ function App() {
 				setviewerId={setviewerId}
 				allReviewData={allReviewData}
 				setallReviewData={setallReviewData}
+				loading={loading}
+				setloading={setloading}
+				setcurrentPage={setcurrentPage}
 			/>
-			<ReviewContainer allReviewData={allReviewData} />
+			<ReviewContainer
+				loading={loading}
+				currentReviews={currentReviews}
+			/>
+			<Pagination
+				reviewsPerPage={reviewsPerPage}
+				totalReviews={allReviewData.length}
+				paginate={paginate}
+			/>
 		</div>
 	);
 }

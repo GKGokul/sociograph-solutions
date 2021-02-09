@@ -10,23 +10,32 @@ const IdSelector = ({
 	setviewerId,
 	allReviewData,
 	setallReviewData,
+	setloading,
+	loading,
+	setcurrentPage,
 }) => {
 	// const [allVids, setallVids] = useState([]);
 
 	useEffect(() => {
-		setviewerId("1");
+		setviewerId(1);
+		setcurrentPage(1);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [productId]);
 
 	useEffect(() => {
+		setloading(true);
 		// console.log("ViewweId:", viewerId);
 		async function fetchReview() {
 			await fetchData(baseUrl, productId, viewerId).then((data) => {
-				// console.log(data);
-				setallReviewData({ ...allReviewData, data });
+				if (!loading) {
+					// console.log(data.reviews);
+					setallReviewData(data.reviews);
+					setloading(false);
+				}
 			});
 		}
 		fetchReview();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [viewerId]);
 
 	useEffect(() => {
@@ -39,7 +48,7 @@ const IdSelector = ({
 		// 	setallVids(temp);
 		// }
 
-		// eslint-disable-next-line react-hooks/exhaustive-deps
+		// 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [allReviewData]);
 
 	const baseUrl = "http://www.i2ce.in";
