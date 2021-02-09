@@ -7,15 +7,15 @@ const IdSelector = () => {
 	const [productId, setproductId] = useState("1");
 	const [viewerId, setviewerId] = useState("1");
 
-	const [reviewData, setreviewData] = useState({});
-
+	const [allReviewData, setallReviewData] = useState({});
+	const [review, setreview] = useState({});
 	const [allVids, setallVids] = useState([]);
 
 	useEffect(() => {
 		async function fetchReview() {
 			await fetchData(baseUrl, productId, viewerId).then((data) => {
 				// console.log(data);
-				setreviewData({ ...reviewData, data });
+				setallReviewData({ ...allReviewData, data });
 			});
 		}
 		fetchReview();
@@ -24,21 +24,21 @@ const IdSelector = () => {
 
 	useEffect(() => {
 		console.log(allVids);
-		// eslint-disable-next-line react-hooks/exhaustive-deps
+		console.log("ViewweId:", viewerId);
 	}, [viewerId]);
 
 	useEffect(() => {
-		console.log(reviewData);
-		if (Object.keys(reviewData).length > 0) {
+		console.log(allReviewData);
+		if (Object.keys(allReviewData).length > 0) {
 			let temp = [];
-			for (let id = 1; id <= reviewData.data.reviews.length; id++) {
+			for (let id = 1; id <= allReviewData.data.reviews.length; id++) {
 				temp.push(id);
 			}
 			setallVids(temp);
 		}
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [reviewData]);
+	}, [allReviewData]);
 
 	const baseUrl = "http://www.i2ce.in";
 
