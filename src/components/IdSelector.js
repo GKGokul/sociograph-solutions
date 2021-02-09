@@ -9,16 +9,7 @@ const IdSelector = () => {
 
 	const [reviewData, setreviewData] = useState({});
 
-	// useEffect(() => {
-	// 	async function initFetch() {
-	// 		await fetchData(baseUrl, 1, 1).then((data) => {
-	// 			// console.log(res);
-	// 			setreviewData({ ...reviewData, data });
-	// 		});
-	// 	}
-	// 	initFetch();
-	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	// }, []);
+	const [allVids, setallVids] = useState([]);
 
 	useEffect(() => {
 		async function fetchReview() {
@@ -38,21 +29,20 @@ const IdSelector = () => {
 
 	useEffect(() => {
 		console.log(reviewData);
-
 		if (Object.keys(reviewData).length > 0) {
-			allVids = [];
+			let temp = [];
 			for (let id = 1; id <= reviewData.data.reviews.length; id++) {
-				allVids.push(id);
+				temp.push(id);
 			}
-			console.log(allVids);
+			setallVids(temp);
 		}
+
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [reviewData]);
 
 	const baseUrl = "http://www.i2ce.in";
 
 	let allPids = [];
-	let allVids = [];
 	for (let pid = 1; pid <= 20; pid++) {
 		allPids.push(pid);
 	}
