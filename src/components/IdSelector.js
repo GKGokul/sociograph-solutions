@@ -1,17 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
 import { fetchData } from "../util";
 
-const IdSelector = () => {
-	const [productId, setproductId] = useState("1");
-	const [viewerId, setviewerId] = useState("1");
-
-	const [allReviewData, setallReviewData] = useState({});
-	const [review, setreview] = useState({});
-	const [allVids, setallVids] = useState([]);
+const IdSelector = ({
+	productId,
+	setproductId,
+	viewerId,
+	setviewerId,
+	allReviewData,
+	setallReviewData,
+}) => {
+	// const [allVids, setallVids] = useState([]);
 
 	useEffect(() => {
+		setviewerId("1");
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [productId]);
+
+	useEffect(() => {
+		// console.log("ViewweId:", viewerId);
 		async function fetchReview() {
 			await fetchData(baseUrl, productId, viewerId).then((data) => {
 				// console.log(data);
@@ -19,23 +27,17 @@ const IdSelector = () => {
 			});
 		}
 		fetchReview();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [productId]);
-
-	useEffect(() => {
-		console.log(allVids);
-		console.log("ViewweId:", viewerId);
 	}, [viewerId]);
 
 	useEffect(() => {
 		console.log(allReviewData);
-		if (Object.keys(allReviewData).length > 0) {
-			let temp = [];
-			for (let id = 1; id <= allReviewData.data.reviews.length; id++) {
-				temp.push(id);
-			}
-			setallVids(temp);
-		}
+		// if (Object.keys(allReviewData).length > 0) {
+		// 	let temp = [];
+		// 	for (let id = 1; id <= allReviewData.data.reviews.length; id++) {
+		// 		temp.push(id);
+		// 	}
+		// 	setallVids(temp);
+		// }
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [allReviewData]);
@@ -45,6 +47,10 @@ const IdSelector = () => {
 	let allPids = [];
 	for (let pid = 1; pid <= 20; pid++) {
 		allPids.push(pid);
+	}
+	let allVids = [];
+	for (let vid = 1; vid <= 10; vid++) {
+		allVids.push(vid);
 	}
 
 	// Ideally this should fetch all the PIDs
@@ -61,7 +67,7 @@ const IdSelector = () => {
 
 	const handleViewerSelect = (option) => {
 		setviewerId(option);
-		console.log("Vviewer:" + option);
+		// console.log("Vviewer:" + option);
 	};
 
 	return (
