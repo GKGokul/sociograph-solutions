@@ -6,7 +6,7 @@ const Pagination = ({ reviewsPerPage, totalReviews, paginate }) => {
 		pageNumbers.push(i);
 	}
 	return (
-		<nav>
+		<nav className="pageNumbersNav">
 			<ul className="pagination">
 				{pageNumbers.map((number) => (
 					<li key={number} className="page-item">

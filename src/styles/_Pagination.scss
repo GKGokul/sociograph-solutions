@@ -1,5 +1,15 @@
+Pagination {
+	position: fixed;
+	bottom: 0;
+}
 .pagination {
 	display: flex;
 	justify-content: center;
 	align-items: flex-end;
+}
+
+.pageNumbersNav {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
 }

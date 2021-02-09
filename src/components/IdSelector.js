@@ -76,7 +76,7 @@ const IdSelector = ({
 
 	const handleViewerSelect = (option) => {
 		setviewerId(option);
-		// console.log("Vviewer:" + option);
+		console.log("Viewer:" + option);
 	};
 
 	return (

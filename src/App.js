@@ -15,7 +15,7 @@ function App() {
 
 	// Pagination states
 	const [currentPage, setcurrentPage] = useState(1);
-	const [reviewsPerPage] = useState(2);
+	const [reviewsPerPage] = useState(3);
 
 	const indexOfLastReview = currentPage * reviewsPerPage;
 	const indexOfFirstReview = indexOfLastReview - reviewsPerPage;
@@ -29,29 +29,31 @@ function App() {
 	};
 
 	return (
-		<div className="App">
-			<Navbar />
-			<IdSelector
-				productId={productId}
-				setproductId={setproductId}
-				viewerId={viewerId}
-				setviewerId={setviewerId}
-				allReviewData={allReviewData}
-				setallReviewData={setallReviewData}
-				loading={loading}
-				setloading={setloading}
-				setcurrentPage={setcurrentPage}
-			/>
-			<ReviewContainer
-				loading={loading}
-				currentReviews={currentReviews}
-			/>
-			<Pagination
-				reviewsPerPage={reviewsPerPage}
-				totalReviews={allReviewData.length}
-				paginate={paginate}
-			/>
-		</div>
+		<React.StrictMode>
+			<div className="App">
+				<Navbar />
+				<IdSelector
+					productId={productId}
+					setproductId={setproductId}
+					viewerId={viewerId}
+					setviewerId={setviewerId}
+					allReviewData={allReviewData}
+					setallReviewData={setallReviewData}
+					loading={loading}
+					setloading={setloading}
+					setcurrentPage={setcurrentPage}
+				/>
+				<ReviewContainer
+					loading={loading}
+					currentReviews={currentReviews}
+				/>
+				<Pagination
+					reviewsPerPage={reviewsPerPage}
+					totalReviews={allReviewData.length}
+					paginate={paginate}
+				/>
+			</div>
+		</React.StrictMode>
 	);
 }
 
