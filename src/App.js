@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Navbar from "./components/Navbar";
 import IdSelector from "./components/IdSelector";
@@ -8,9 +8,9 @@ import Pagination from "./components/Pagination";
 import "./styles/App.scss";
 
 function App() {
-	const [loading, setloading] = useState(false);
+	const [loading, setloading] = useState(true);
 	const [productId, setproductId] = useState(1);
-	const [viewerId, setviewerId] = useState(0);
+	const [viewerId, setviewerId] = useState(1);
 	const [allReviewData, setallReviewData] = useState([]);
 
 	// Pagination states
@@ -19,14 +19,23 @@ function App() {
 
 	const indexOfLastReview = currentPage * reviewsPerPage;
 	const indexOfFirstReview = indexOfLastReview - reviewsPerPage;
-	const currentReviews = allReviewData.slice(
-		indexOfFirstReview,
-		indexOfLastReview
+	const [currentReviews, setcurrentReviews] = useState(
+		allReviewData.slice(indexOfFirstReview, indexOfLastReview)
 	);
 
 	const paginate = (pageNumber) => {
 		setcurrentPage(pageNumber);
+		// console.log(indexOfFirstReview, indexOfLastReview);
+		// setcurrentReviews(
+		// 	allReviewData.slice(indexOfFirstReview, indexOfLastReview)
+		// );
 	};
+
+	useEffect(() => {
+		setcurrentReviews(
+			allReviewData.slice(indexOfFirstReview, indexOfLastReview)
+		);
+	}, [currentPage]);
 
 	return (
 		<React.StrictMode>
@@ -42,6 +51,9 @@ function App() {
 					loading={loading}
 					setloading={setloading}
 					setcurrentPage={setcurrentPage}
+					setcurrentReviews={setcurrentReviews}
+					indexOfFirstReview={indexOfFirstReview}
+					indexOfLastReview={indexOfLastReview}
 				/>
 				<ReviewContainer
 					loading={loading}

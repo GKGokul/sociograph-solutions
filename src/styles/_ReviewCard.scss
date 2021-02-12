@@ -1,8 +1,9 @@
 .ReviewCardSection {
 	// margin: 30px;
 	// border: 1px solid red;
-	padding: 1rem;
-	margin: 1rem;
+	padding: 1.5rem;
+	// margin: 1rem;
+	// width: 50%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -56,7 +57,30 @@
 	margin: 10px;
 }
 
+.col {
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+
 .card-title {
 	font-size: 1.5rem im !important;
 	font-weight: 100;
+}
+
+.expandArrow {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 2rem;
+	padding-bottom: 1rem;
+}
+.arrowDown {
+	height: 1.5rem;
+}
+
+.extraDetails {
+	padding-bottom: 1rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
