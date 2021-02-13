@@ -1,7 +1,13 @@
 .reviewContainer {
-	margin: 25px;
+	margin: 10px;
+	font-size: 18px;
 	// border: 1px solid black;
-	height: 65vh;
+	// height: 20vh;
+	padding-bottom: 5rem;
+}
+
+.reviewContainer h3 {
+	text-align: center;
 }
 
 .loader-container {

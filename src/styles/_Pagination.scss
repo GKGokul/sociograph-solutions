@@ -1,15 +1,12 @@
-Pagination {
-	position: fixed;
-	bottom: 0;
-}
-.pagination {
+.pageNumbersNav {
 	display: flex;
 	justify-content: center;
 	align-items: flex-end;
+	position: absolute;
+	bottom: 0rem;
+	width: 100%;
 }
 
-.pageNumbersNav {
-	position: absolute;
-	bottom: 0;
-	width: 100%;
+.pageNumberHider {
+	display: none;
 }

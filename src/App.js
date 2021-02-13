@@ -11,6 +11,7 @@ function App() {
 	const [loading, setloading] = useState(true);
 	const [productId, setproductId] = useState(1);
 	const [viewerId, setviewerId] = useState(1);
+	const [sortBy, setsortBy] = useState("none");
 	const [allReviewData, setallReviewData] = useState([]);
 
 	// Pagination states
@@ -54,12 +55,16 @@ function App() {
 					setcurrentReviews={setcurrentReviews}
 					indexOfFirstReview={indexOfFirstReview}
 					indexOfLastReview={indexOfLastReview}
+					sortBy={sortBy}
+					setsortBy={setsortBy}
 				/>
 				<ReviewContainer
 					loading={loading}
 					currentReviews={currentReviews}
+					productId={productId}
 				/>
 				<Pagination
+					loading={loading}
 					reviewsPerPage={reviewsPerPage}
 					totalReviews={allReviewData.length}
 					paginate={paginate}

@@ -1,13 +1,14 @@
 .topNavBar {
 	display: flex;
-	justify-content: space-evenly;
+	justify-content: space-around;
 	align-items: center;
 	margin: 10px;
+	min-height: 4rem;
 }
 .IdSelector {
 	display: flex;
-	justify-content: space-around;
-	width: 50%;
+	justify-content: space-between;
+	width: 20rem;
 	align-items: center;
 	// border: 1px solid black;
 }
@@ -17,4 +18,15 @@
 	min-height: auto;
 	max-height: 15rem;
 	overflow-y: auto;
+}
+
+@media screen and (max-width: 786px) {
+	.IdSelector {
+		display: flex;
+		justify-content: space-between;
+		// margin: 20px;
+		width: 13rem;
+		align-items: center;
+		// border: 1px solid black;
+	}
 }

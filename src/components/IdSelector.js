@@ -18,24 +18,43 @@ const IdSelector = ({
 	setcurrentReviews,
 	indexOfLastReview,
 	indexOfFirstReview,
+	sortBy,
+	setsortBy,
 }) => {
 	// const [allVids, setallVids] = useState([]);
-
-	let backupAllReviewData = allReviewData;
 
 	useEffect(() => {
 		// setviewerId(1);
 		setcurrentPage(1);
-
-		async function fetchReview() {
-			await fetchData(baseUrl, productId, viewerId).then((data) => {
-				console.log(data.reviews);
-				setallReviewData(data.reviews);
-				setcurrentReviews(
-					allReviewData.slice(indexOfFirstReview, indexOfLastReview)
-				);
-				setloading(!loading);
-			});
+		setsortBy("none");
+		function fetchReview() {
+			fetchData(baseUrl, productId, viewerId).then(
+				(data) => {
+					// console.log(data.reviews);
+					localStorage.setItem(
+						"backupAllReviewData",
+						JSON.stringify(data.reviews)
+					);
+					// console.log(
+					// 	JSON.parse(localStorage.getItem("backupAllReviewData"))
+					// );
+					setallReviewData(data.reviews);
+					setcurrentReviews(
+						allReviewData.slice(
+							indexOfFirstReview,
+							indexOfLastReview
+						)
+					);
+					setloading(!loading);
+				},
+				(err) => {
+					// alert(err);
+					alert(
+						"An error has occurred. Check your Network. Please contact admin if this persists."
+					);
+					setloading(!loading);
+				}
+			);
 		}
 
 		fetchReview();
@@ -112,14 +131,21 @@ const IdSelector = ({
 	const handleSortSelect = (sortOption) => {
 		setcurrentPage(1);
 		console.log(sortOption);
-		setallReviewData(backupAllReviewData);
+		// setallReviewData(backupAllReviewData);
 
 		if (sortOption === "none") {
-			setallReviewData(backupAllReviewData);
+			setsortBy("none");
+			console.log(
+				JSON.parse(localStorage.getItem("backupAllReviewData"))
+			);
+			setallReviewData(
+				JSON.parse(localStorage.getItem("backupAllReviewData"))
+			);
 		} else if (sortOption === "overall") {
 			// console.log(allReviewData);
+			setsortBy("overall");
 			let key = "ratings.Overall";
-			const sortedData = sortDataOnKey(backupAllReviewData, key);
+			const sortedData = sortDataOnKey(allReviewData, key);
 			// console.log(sortedData);
 			setallReviewData(sortedData);
 			// setcurrentPage(1);
@@ -129,8 +155,9 @@ const IdSelector = ({
 				sortedData.slice(indexOfFirstReview, indexOfLastReview)
 			);
 		} else if (sortOption === "usefulness") {
+			setsortBy("usefulness");
 			let key = "usefulness";
-			const sortedData = sortDataOnKey(backupAllReviewData, key);
+			const sortedData = sortDataOnKey(allReviewData, key);
 			setallReviewData(sortedData);
 			// setcurrentPage(1);
 			// indexOfLastReview = 3;
@@ -139,8 +166,9 @@ const IdSelector = ({
 				sortedData.slice(indexOfFirstReview, indexOfLastReview)
 			);
 		} else if (sortOption === "connection") {
+			setsortBy("connection");
 			let key = "reviewer.connection_level";
-			const sortedData = sortDataOnKey(backupAllReviewData, key);
+			const sortedData = sortDataOnKey(allReviewData, key);
 			setallReviewData(sortedData);
 			// setcurrentPage(1);
 			// indexOfLastReview = 3;
@@ -202,16 +230,27 @@ const IdSelector = ({
 					title="Sort by:  "
 					onSelect={handleSortSelect}
 				>
-					<Dropdown.Item as="button" eventKey="none" key="none">
+					<Dropdown.Item
+						as="button"
+						eventKey="none"
+						key="none"
+						active={sortBy === "none" ? true : false}
+					>
 						None
 					</Dropdown.Item>
-					<Dropdown.Item as="button" eventKey="overall" key="overall">
+					<Dropdown.Item
+						as="button"
+						eventKey="overall"
+						key="overall"
+						active={sortBy === "overall" ? true : false}
+					>
 						Overall
 					</Dropdown.Item>
 					<Dropdown.Item
 						as="button"
 						eventKey="usefulness"
 						key="usefulness"
+						active={sortBy === "usefulness" ? true : false}
 					>
 						Usefulness
 					</Dropdown.Item>
@@ -219,6 +258,7 @@ const IdSelector = ({
 						as="button"
 						eventKey="connection"
 						key="connection"
+						active={sortBy === "connection" ? true : false}
 					>
 						Connection
 					</Dropdown.Item>

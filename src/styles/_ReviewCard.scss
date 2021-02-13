@@ -1,7 +1,7 @@
 .ReviewCardSection {
 	// margin: 30px;
 	// border: 1px solid red;
-	padding: 1.5rem;
+	padding: 1rem;
 	// margin: 1rem;
 	// width: 50%;
 	display: flex;
@@ -15,21 +15,25 @@
 // }
 
 .card-body {
-	align-items: center;
-	justify-content: center;
+	max-height: 100%;
 	padding: 1rem !important;
 	margin: 1rem;
-	margin-top: 2rem;
-	max-height: 100%;
 	// border: 1px solid black;
 }
 
 .rating {
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
+	padding: 0.5rem;
+	margin: 0.5rem;
+	padding-bottom: 0;
+	margin-bottom: 0;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+}
+
+.ratingCol {
+	padding: 0;
+	margin: 0;
 }
 
 .ratingDesription {
@@ -49,38 +53,119 @@
 }
 
 // .ratingCol {
-// 	// border: 1px solid blue;
+// 	width: auto;
+// 	border: 1px solid blue;
 // }
 
-.row {
-	// border: 1px solid red;
-	margin: 10px;
-}
-
 .col {
-	margin-bottom: 0;
-	padding-bottom: 0;
+	// padding: 0 !important;
+	margin: 0 !important;
 }
 
+.card {
+	width: 65%;
+	padding: 0 !important;
+	margin: 0 !important;
+	box-shadow: 3px 3px #0089f9;
+}
 .card-title {
-	font-size: 1.5rem im !important;
+	font-size: 1.5rem !important;
 	font-weight: 100;
 }
 
-.expandArrow {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 2rem;
-	padding-bottom: 1rem;
-}
-.arrowDown {
+.arrowDown,
+.arrowUp {
 	height: 1.5rem;
 }
 
-.extraDetails {
-	padding-bottom: 1rem;
+.expandToggler {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	padding-bottom: 0.5rem;
+	// border-top: 0.5px dotted rgba(189, 180, 180, 0.5);
+}
+
+.extraDetails {
+	display: flex;
+	align-items: center;
+	padding: 0.5rem;
+	justify-content: space-evenly;
+	border-top: 0.5px dotted rgba(189, 180, 180, 0.5);
+}
+.extraDetails p {
+	margin: 2px;
+}
+
+.ReviewDeatils {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.likedProducts {
+	width: 2.5rem;
+	height: 2.5rem;
+	margin: 0.1rem;
+}
+
+.productLiking {
+	margin-left: 1rem;
+	max-width: 3rem;
+	max-height: 3rem;
+}
+
+.extraDetailsCol1 {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.extraDetailsCol2 {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.extraDetailsCol2 p {
+	width: 100%;
+}
+
+@media screen and (max-width: 786px) {
+	.ReviewCardSection {
+		// margin: 30px;
+		// border: 1px solid red;
+		padding: 0.3rem;
+		// margin: 1rem;
+		// width: 125%;
+	}
+
+	.card {
+		width: 100%;
+	}
+
+	.card-body {
+		align-items: center;
+		justify-content: center;
+		padding: 1rem !important;
+		margin: 1rem;
+		max-height: 100%;
+		// border: 1px solid black;
+	}
+	.extraDetailsCol1 {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding: 1rem;
+		margin: 1rem;
+	}
+	.extraDetailsCol2 {
+		padding: 1rem;
+		margin: 1rem;
+		padding-bottom: 0;
+		margin-bottom: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
 }

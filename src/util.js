@@ -34,8 +34,9 @@ export const sortDataMisc = (data, keySelect, order, keyVal, key = "") => {
 				else return 0;
 			}
 		});
+		return sortedList;
 
-		let sortedObject = {};
+		// let sortedObject = {};
 		// sortedList.map(([key, value]) => {
 		// 	// console.log(key, value);
 		// 	sortedObject[key] = value;
@@ -43,38 +44,43 @@ export const sortDataMisc = (data, keySelect, order, keyVal, key = "") => {
 		// });
 
 		// let mapp = new Map(sortedList);
-		Object.fromEntries(
-			Object.entries(sortedList).map(([k, v], i) => {
-				return (sortedObject[k] = sortedObject[v]);
-			})
-		);
+		// Object.fromEntries(
+		// 	Object.entries(sortedList).map(([k, v], i) => {
+		// 		return (sortedObject[k] = sortedObject[v]);
+		// 	})
+		// );
 		//
 		// console.log(objectMap(myObject, (v) => 2 * v));
 		// console.log(JSON.stringify(sortedObject));
 
 		// return sortedObject;
-	} else if (keyVal === "key") {
 	}
+	//  else if (keyVal === "key") {
+	// }
 };
 
-export const sortDataOnKey = (data, key) => {
-	key = key.split(".");
+export const sortDataOnKey = (data, key = "", order = -1) => {
+	if (key) {
+		key = key.split(".");
 
-	data.sort((a, b) => {
-		let i = 0;
-		while (i < key.length) {
-			a = a[key[i]];
-			b = b[key[i]];
-			i++;
-		}
-		if (a < b) {
-			return -1;
-		} else if (a > b) {
-			return 1;
-		} else {
-			return 0;
-		}
-	});
+		data.sort((a, b) => {
+			let i = 0;
+			while (i < key.length) {
+				a = a[key[i]];
+				b = b[key[i]];
+				i++;
+			}
+			if (a < b) {
+				return order === -1 ? 1 : -1;
+			} else if (a > b) {
+				return order === -1 ? -1 : 1;
+			} else {
+				return 0;
+			}
+		});
 
-	return data;
+		return data;
+	} else {
+		return data;
+	}
 };

@@ -1,14 +1,6 @@
-App {
-	display: flex;
-	flex-direction: column;
-	flex: 1;
-	min-height: 100vh;
-}
-
-Pagination {
-	position: fixed;
-	left: 0;
-	bottom: 0;
+.App {
+	position: relative;
+	// overflow-y: scroll;
 }
 
 //Import partials ( Starts with _ )
