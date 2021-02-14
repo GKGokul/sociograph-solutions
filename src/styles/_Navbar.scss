@@ -1,12 +1,37 @@
-.Navbar {
-	margin: 10px;
-	padding: 10px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+.NavBar {
+	// margin: 10px;
+	padding: 20px;
+	background-color: #f3fbff;
+	img {
+		width: 2rem;
+		height: 2rem;
+		position: absolute;
+		top: 1rem;
+		right: 1rem;
+	}
 	h2 {
 		font-size: 2.5rem;
+		text-align: center;
 	}
-	background-color: #f3fbff;
-	// border: 1px solid black;
+}
+
+.dark-mode {
+	background: rgb(24, 24, 24);
+	color: whitesmoke;
+}
+
+@media screen and (max-width: 786px) {
+	.NavBar {
+		img {
+			width: 1.5rem;
+			height: 1.5rem;
+			position: absolute;
+			top: 1rem;
+			right: 1rem;
+		}
+		h2 {
+			font-size: 2.2rem;
+			text-align: center;
+		}
+	}
 }

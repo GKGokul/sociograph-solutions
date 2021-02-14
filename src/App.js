@@ -24,6 +24,8 @@ function App() {
 		allReviewData.slice(indexOfFirstReview, indexOfLastReview)
 	);
 
+	const [toggleDarkTheme, settoggleDarkTheme] = useState(false);
+
 	const paginate = (pageNumber) => {
 		setcurrentPage(pageNumber);
 		// console.log(indexOfFirstReview, indexOfLastReview);
@@ -40,8 +42,11 @@ function App() {
 
 	return (
 		<React.StrictMode>
-			<div className="App">
-				<Navbar />
+			<div className={"App" + (toggleDarkTheme ? " dark-mode" : "")}>
+				<Navbar
+					toggleDarkTheme={toggleDarkTheme}
+					settoggleDarkTheme={settoggleDarkTheme}
+				/>
 				<IdSelector
 					productId={productId}
 					setproductId={setproductId}
@@ -59,12 +64,15 @@ function App() {
 					setsortBy={setsortBy}
 				/>
 				<ReviewContainer
+					toggleDarkTheme={toggleDarkTheme}
 					loading={loading}
 					currentReviews={currentReviews}
 					productId={productId}
+					viewerId={viewerId}
 				/>
 				<Pagination
 					loading={loading}
+					toggleDarkTheme={toggleDarkTheme}
 					reviewsPerPage={reviewsPerPage}
 					totalReviews={allReviewData.length}
 					paginate={paginate}

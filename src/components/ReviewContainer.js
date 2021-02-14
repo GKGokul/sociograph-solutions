@@ -2,7 +2,13 @@ import React from "react";
 import ReviewCard from "./ReviewCard";
 import { v4 as uuidv4 } from "uuid";
 
-const ReviewContainer = ({ loading, currentReviews, productId }) => {
+const ReviewContainer = ({
+	loading,
+	currentReviews,
+	productId,
+	toggleDarkTheme,
+	viewerId,
+}) => {
 	if (loading) {
 		return (
 			<div className="loader-container">
@@ -12,10 +18,20 @@ const ReviewContainer = ({ loading, currentReviews, productId }) => {
 	}
 
 	return (
-		<div className="reviewContainer">
-			<h3>Reviews for Product:{productId}</h3>
+		<div
+			className={
+				"reviewContainer" + (toggleDarkTheme ? " dark-mode" : "")
+			}
+		>
+			<h3>
+				Reviews for Product:{productId} Viewer:{viewerId}
+			</h3>
 			{currentReviews.map((review) => (
-				<ReviewCard review={review} key={uuidv4()} />
+				<ReviewCard
+					toggleDarkTheme={toggleDarkTheme}
+					review={review}
+					key={uuidv4()}
+				/>
 			))}
 		</div>
 	);

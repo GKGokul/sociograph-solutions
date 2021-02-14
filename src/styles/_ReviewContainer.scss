@@ -1,9 +1,8 @@
 .reviewContainer {
-	margin: 10px;
+	padding: 1rem;
 	font-size: 18px;
-	// border: 1px solid black;
-	// height: 20vh;
 	padding-bottom: 5rem;
+	// border: 1px solid black;
 }
 
 .reviewContainer h3 {
@@ -16,6 +15,7 @@
 	align-items: center;
 	margin: 25px;
 	height: 50vh;
+
 	// border: 1px solid black;
 }
 .loader {
@@ -34,4 +34,10 @@
 	100% {
 		transform: rotate(360deg);
 	}
+}
+
+.dark-mode {
+	background: rgb(24, 24, 24);
+	color: whitesmoke;
+	transition: 0.1s ease-in;
 }

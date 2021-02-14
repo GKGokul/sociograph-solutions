@@ -4,11 +4,13 @@ import Rating from "@material-ui/lab/Rating";
 import { sortDataMisc } from "../util";
 
 import DownArrow from "../static/arrow-down.svg";
+import DownArrowWhite from "../static/arrow-down-white.svg";
 import UpArrow from "../static/arrow-up.svg";
+import UpArrowWhite from "../static/arrow-up-white.svg";
 import GreenTick from "../static/green-tick.svg";
 import RedWrong from "../static/red-wrong.svg";
 
-const ReviewCard = ({ review }) => {
+const ReviewCard = ({ review, toggleDarkTheme }) => {
 	const [expandState, setexpandState] = useState(false);
 
 	const [extraDetails, setextraDetails] = useState({ display: "none" });
@@ -28,7 +30,7 @@ const ReviewCard = ({ review }) => {
 
 	return (
 		<div className="ReviewCardSection">
-			<Card>
+			<Card className={toggleDarkTheme ? " dark-mode-card" : ""}>
 				{/* <Card.Img variant="top" src="holder.js/100px180" /> */}
 				<Row>
 					<Col className="ReviewDeatils">
@@ -64,7 +66,14 @@ const ReviewCard = ({ review }) => {
 						</Card.Body>
 					</Col>
 					{/* <Col xs={2}></Col> */}
-					<Col md="auto" className="ratingCol">
+					<Col
+						md="auto"
+						className={
+							"ratingCol" + toggleDarkTheme
+								? " dark-mode-stars"
+								: ""
+						}
+					>
 						<div className="rating">
 							<div>
 								<Rating
@@ -212,7 +221,15 @@ const ReviewCard = ({ review }) => {
 					<img
 						onClick={expandToggleHandler}
 						className={expandState ? "arrowUp" : "arrowDown"}
-						src={expandState ? UpArrow : DownArrow}
+						src={
+							expandState
+								? toggleDarkTheme
+									? UpArrowWhite
+									: UpArrow
+								: toggleDarkTheme
+								? DownArrowWhite
+								: DownArrow
+						}
 						alt={
 							expandState
 								? "Arrow Up- Click to collapse"

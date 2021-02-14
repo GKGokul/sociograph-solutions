@@ -1,6 +1,13 @@
 .App {
 	position: relative;
+	min-height: 100vh;
 	// overflow-y: scroll;
+}
+
+.dark-mode {
+	background: rgb(24, 24, 24);
+	color: whitesmoke;
+	transition: 0.1s ease-in;
 }
 
 //Import partials ( Starts with _ )
