@@ -51,7 +51,7 @@ const ReviewCard = ({ review }) => {
 							</p>
 							<p>
 								<span style={{ fontWeight: "500" }}>
-									Usefulness:
+									Usefulness:{" "}
 								</span>
 								{review.usefulness}
 							</p>
@@ -155,58 +155,56 @@ const ReviewCard = ({ review }) => {
 						</div>
 					</Col>
 				</Row>
-				<div className="extraDetails" style={extraDetails}>
-					<Row>
-						<Col className="extraDetailsCol1">
-							<div>
-								<p>
-									<span style={{ fontWeight: "500" }}>
-										Age:{" "}
-									</span>
-									{review.friend ? review.reviewer.age : "NA"}
-									<br />
-									<span style={{ fontWeight: "500" }}>
-										Reviewed on:{" "}
-									</span>
-									{new Date(review.reviewer.timestamp * 1000)
-										.toString()
-										.slice(3, 15)}
-									<br />
-									<span style={{ fontWeight: "500" }}>
-										Connection Level:{" "}
-									</span>
-									{review.reviewer.connection_level !== 1000
-										? review.reviewer.connection_level.toFixed(
-												2
-										  )
-										: "NA"}
-								</p>
-							</div>
-						</Col>
-						<Col className="extraDetailsCol2">
-							<span style={{ fontWeight: "500" }}>Likes</span>
+				<Row className="extraDetails" style={extraDetails}>
+					<Col className="extraDetailsCol1">
+						<div>
 							<p>
-								{sortDataMisc(
-									review,
-									"reviewer.liked_products",
-									1,
-									"value"
-								)
-									.slice(0, 5)
-									.map((product, qty) => {
-										return (
-											<button
-												className="likedProducts"
-												key={product[0]}
-											>
-												{product[0]}
-											</button>
-										);
-									})}
+								<span style={{ fontWeight: "500" }}>Age: </span>
+								{review.friend ? review.reviewer.age : "NA"}
+								<br />
+								<span style={{ fontWeight: "500" }}>
+									Reviewed on:{" "}
+								</span>
+								{new Date(review.reviewer.timestamp * 1000)
+									.toString()
+									.slice(3, 15)}
+								<br />
+								<span style={{ fontWeight: "500" }}>
+									Connection Level:{" "}
+								</span>
+								{review.reviewer.connection_level !== 1000
+									? review.reviewer.connection_level.toFixed(
+											2
+									  )
+									: "NA"}
 							</p>
-						</Col>
-					</Row>
-				</div>
+						</div>
+					</Col>
+					<Col className="extraDetailsCol2">
+						<span style={{ fontWeight: "500" }}>
+							Liked Products
+						</span>
+						<p>
+							{sortDataMisc(
+								review,
+								"reviewer.liked_products",
+								1,
+								"value"
+							)
+								.slice(0, 5)
+								.map((product, qty) => {
+									return (
+										<button
+											className="likedProducts"
+											key={product[0]}
+										>
+											{product[0]}
+										</button>
+									);
+								})}
+						</p>
+					</Col>
+				</Row>
 
 				<div className="expandToggler">
 					{/* {review.reviewer.liked_products.slice(3)} */}
