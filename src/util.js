@@ -1,6 +1,6 @@
 import axios from "axios";
 
-// http://www.i2ce.in/review/<pid>/<uid>
+// GET request to URL - http://www.i2ce.in/review/<pid>/<uid>
 export const fetchData = (url, productId, viewerId) => {
 	console.log("FETCHING: ", `${url}/reviews/${productId}/${viewerId}`);
 	// const response = await axios.get(`${url}/reviews/${productId}/${viewerId}`);
@@ -11,11 +11,11 @@ export const fetchData = (url, productId, viewerId) => {
 		.then((response) => response.data);
 };
 
+// Special sorting function to sort liked_products and return the sorted list of products
 export const sortDataMisc = (data, keySelect, order, keyVal, key = "") => {
 	if (keyVal === "value") {
 		let level = keySelect;
 		level = level.split(".");
-
 		let currentObjState = data;
 
 		for (let i = 0; i < level.length; i++) {
@@ -59,6 +59,7 @@ export const sortDataMisc = (data, keySelect, order, keyVal, key = "") => {
 	// }
 };
 
+// Generic sorting utility function - Sort array of objects based on a key. By default - Descending.
 export const sortDataOnKey = (data, key = "", order = -1) => {
 	if (key) {
 		key = key.split(".");

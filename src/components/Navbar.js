@@ -1,5 +1,6 @@
 import React from "react";
 import DarkMode from "../static/light-mode.png";
+
 const Navbar = ({ toggleDarkTheme, settoggleDarkTheme }) => {
 	const toggleTheme = () => {
 		console.log("clicked", toggleDarkTheme);
@@ -17,8 +18,6 @@ const Navbar = ({ toggleDarkTheme, settoggleDarkTheme }) => {
 				/>
 			</div>
 			<h2>Review Reader</h2>
-			{/* <span> */}
-			{/* </span> */}
 		</div>
 	);
 };

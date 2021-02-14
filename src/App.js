@@ -44,10 +44,12 @@ function App() {
 	return (
 		<React.StrictMode>
 			<div className={"App" + (toggleDarkTheme ? " dark-mode" : "")}>
+				{/* Navbar Component to display the header. */}
 				<Navbar
 					toggleDarkTheme={toggleDarkTheme}
 					settoggleDarkTheme={settoggleDarkTheme}
 				/>
+				{/* ID-Selector Component - allows the user to select the product and viewer ID, including sort options. */}
 				<IdSelector
 					productId={productId}
 					setproductId={setproductId}
@@ -64,6 +66,7 @@ function App() {
 					sortBy={sortBy}
 					setsortBy={setsortBy}
 				/>
+				{/* Review Container Component - displays the details of the selected products in cards style. */}
 				<ReviewContainer
 					toggleDarkTheme={toggleDarkTheme}
 					loading={loading}
@@ -71,6 +74,7 @@ function App() {
 					productId={productId}
 					viewerId={viewerId}
 				/>
+				{/* Pagination Component - to display and maintain pagination. */}
 				<Pagination
 					loading={loading}
 					toggleDarkTheme={toggleDarkTheme}

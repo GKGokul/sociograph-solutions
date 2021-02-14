@@ -21,8 +21,6 @@ const IdSelector = ({
 	sortBy,
 	setsortBy,
 }) => {
-	// const [allVids, setallVids] = useState([]);
-
 	useEffect(() => {
 		// setviewerId(1);
 		setcurrentPage(1);
@@ -58,43 +56,17 @@ const IdSelector = ({
 		}
 
 		fetchReview();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [productId, viewerId]);
 
 	useEffect(() => {
 		console.log("useeffect");
 		setcurrentReviews(
 			allReviewData.slice(indexOfFirstReview, indexOfLastReview)
-		); // console.log(backupAllReviewData + "updated");
+		);
+		// console.log(backupAllReviewData + "updated");
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [allReviewData]);
-
-	// useEffect(() => {
-	// 	setloading(true);
-	// 	// console.log("ViewweId:", viewerId);
-	// 	async function fetchReview() {
-	// 		await fetchData(baseUrl, productId, viewerId).then((data) => {
-	// 			if (!loading) {
-	// 				// console.log(data.reviews);
-	// 				setallReviewData(data.reviews);
-	// 				setloading(false);
-	// 			}
-	// 		});
-	// 	}
-	// 	fetchReview();
-	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	// }, [viewerId]);
-
-	// useEffect(() => {
-	// 	console.log(allReviewData);
-	// 	// if (Object.keys(allReviewData).length > 0) {
-	// 	// 	let temp = [];
-	// 	// 	for (let id = 1; id <= allReviewData.data.reviews.length; id++) {
-	// 	// 		temp.push(id);
-	// 	// 	}
-	// 	// 	setallVids(temp);
-	// 	// }
-
-	// 	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	// }, [allReviewData]);
 
 	const baseUrl = "http://www.i2ce.in";
 
@@ -107,14 +79,6 @@ const IdSelector = ({
 		allVids.push(vid);
 	}
 
-	// Ideally this should fetch all the PIDs
-	// const loadAllPids = () => {
-	// 	for (let pid = 1; pid <= 20; pid++) {
-	// 		allPids.push(pid);
-	// 	}
-	// };
-
-	// console.log("rerender");
 	const handleProductSelect = (option) => {
 		setproductId(option);
 		setviewerId(1);
@@ -131,7 +95,6 @@ const IdSelector = ({
 	const handleSortSelect = (sortOption) => {
 		setcurrentPage(1);
 		console.log(sortOption);
-		// setallReviewData(backupAllReviewData);
 
 		if (sortOption === "none") {
 			setsortBy("none");
@@ -146,11 +109,7 @@ const IdSelector = ({
 			setsortBy("overall");
 			let key = "ratings.Overall";
 			const sortedData = sortDataOnKey(allReviewData, key);
-			// console.log(sortedData);
 			setallReviewData(sortedData);
-			// setcurrentPage(1);
-			// indexOfLastReview = 3;
-			// indexOfFirstReview = indexOfLastReview - 3;
 			setcurrentReviews(
 				sortedData.slice(indexOfFirstReview, indexOfLastReview)
 			);
@@ -159,9 +118,6 @@ const IdSelector = ({
 			let key = "usefulness";
 			const sortedData = sortDataOnKey(allReviewData, key);
 			setallReviewData(sortedData);
-			// setcurrentPage(1);
-			// indexOfLastReview = 3;
-			// indexOfFirstReview = indexOfLastReview - 3;
 			setcurrentReviews(
 				sortedData.slice(indexOfFirstReview, indexOfLastReview)
 			);
@@ -170,9 +126,6 @@ const IdSelector = ({
 			let key = "reviewer.connection_level";
 			const sortedData = sortDataOnKey(allReviewData, key);
 			setallReviewData(sortedData);
-			// setcurrentPage(1);
-			// indexOfLastReview = 3;
-			// indexOfFirstReview = indexOfLastReview - 3;
 			setcurrentReviews(
 				sortedData.slice(indexOfFirstReview, indexOfLastReview)
 			);
@@ -188,7 +141,6 @@ const IdSelector = ({
 						title="Product "
 						onSelect={handleProductSelect}
 					>
-						{/* <Dropdown.ItemText>Select Ciewer:</Dropdown.ItemText> */}
 						{allPids.map((pid) => (
 							<Dropdown.Item
 								as="button"
@@ -210,7 +162,6 @@ const IdSelector = ({
 						title="Viewer "
 						onSelect={handleViewerSelect}
 					>
-						{/* <Dropdown.ItemText>Select User:</Dropdown.ItemText> */}
 						{allVids.map((vid) => (
 							<Dropdown.Item
 								as="button"

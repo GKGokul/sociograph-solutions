@@ -3,6 +3,7 @@ import { Card, Row, Col } from "react-bootstrap";
 import Rating from "@material-ui/lab/Rating";
 import { sortDataMisc } from "../util";
 
+// Import all statics
 import DownArrow from "../static/arrow-down.svg";
 import DownArrowWhite from "../static/arrow-down-white.svg";
 import UpArrow from "../static/arrow-up.svg";
@@ -12,8 +13,8 @@ import RedWrong from "../static/red-wrong.svg";
 
 const ReviewCard = ({ review, toggleDarkTheme }) => {
 	const [expandState, setexpandState] = useState(false);
-
 	const [extraDetails, setextraDetails] = useState({ display: "none" });
+
 	const expandToggleHandler = () => {
 		if (expandState === false) {
 			setexpandState(true);
@@ -31,7 +32,6 @@ const ReviewCard = ({ review, toggleDarkTheme }) => {
 	return (
 		<div className="ReviewCardSection">
 			<Card className={toggleDarkTheme ? " dark-mode-card" : ""}>
-				{/* <Card.Img variant="top" src="holder.js/100px180" /> */}
 				<Row>
 					<Col className="ReviewDeatils">
 						<Card.Body>
@@ -43,12 +43,11 @@ const ReviewCard = ({ review, toggleDarkTheme }) => {
 										: "Anonymous"}
 								</i>
 							</p>
-							{/* <Card.Text>{review.comment} </Card.Text> */}
-							<p>
+							<p style={{ maxWidth: "19rem" }}>
 								<span style={{ fontWeight: "500" }}>
 									Comments
 								</span>
-								: {review.comment}
+								: {review.comment}:
 								{/* ajshflkauhvsleufkhalbkuvfhlavkuhebfuklavshblufkhlwuifhqlwoiuefhlvbakuhfsjvdbcbaleifoxiuweoiucfqolvjfsgbldjkj */}
 							</p>
 							<p>
@@ -65,7 +64,6 @@ const ReviewCard = ({ review, toggleDarkTheme }) => {
 							/>
 						</Card.Body>
 					</Col>
-					{/* <Col xs={2}></Col> */}
 					<Col
 						md="auto"
 						className={
@@ -216,8 +214,6 @@ const ReviewCard = ({ review, toggleDarkTheme }) => {
 				</Row>
 
 				<div className="expandToggler">
-					{/* {review.reviewer.liked_products.slice(3)} */}
-					{/* <a href="#" id="hideIt" className="hideIt"> */}
 					<img
 						onClick={expandToggleHandler}
 						className={expandState ? "arrowUp" : "arrowDown"}
@@ -236,14 +232,6 @@ const ReviewCard = ({ review, toggleDarkTheme }) => {
 								: "Arrow Down- Click to expand"
 						}
 					/>
-					{/* </a> */}
-					{/* <a href="#showIt" id="showIt" className="showIt">
-						<img
-							className="arrowUp"
-							src={UpArrow}
-							alt="Arrow Up- Click to collapse"
-						/>
-					</a> */}
 				</div>
 			</Card>
 		</div>

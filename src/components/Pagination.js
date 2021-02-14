@@ -8,9 +8,11 @@ const Pagination = ({
 	toggleDarkTheme,
 }) => {
 	const pageNumbers = [];
+
 	for (let i = 1; i <= Math.ceil(totalReviews / reviewsPerPage); i++) {
 		pageNumbers.push(i);
 	}
+
 	return (
 		<nav
 			className={
