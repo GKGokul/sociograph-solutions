@@ -38,6 +38,7 @@ function App() {
 		setcurrentReviews(
 			allReviewData.slice(indexOfFirstReview, indexOfLastReview)
 		);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [currentPage]);
 
 	return (
